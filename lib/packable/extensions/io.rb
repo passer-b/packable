@@ -53,7 +53,7 @@ module Packable
       end
 
       def each_with_packing(*options, &block)
-        return each_without_packing(*options, &block) if (Integer === options.first) || (String === options.first)
+        return each_without_packing(*options, &block) if (Integer === options.first) || (String === options.first) || options.first.nil?
         return Enumerator.new(self, :each_with_packing, *options) unless block_given?
         yield read(*options) until eof?
       end
